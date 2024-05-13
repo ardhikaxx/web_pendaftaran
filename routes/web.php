@@ -21,7 +21,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/print', 'App\Http\Controllers\PasienController@print')->name('print');
-Route::get('/home/cari', [App\Http\Controllers\HomeController::class, 'cari'])->name('cari');
-Route::post('/process-dropdown', [App\Http\Controllers\HomeController::class, 'processDropdown'])->name('process_dropdown');
-Route::post('/search-patient', [App\Http\Controllers\HomeController::class, 'search'])->name('search_patient');
+Route::get('/data-pasien', [App\Http\Controllers\DataPasienController::class, 'index'])->name('data-pasien');
+Route::get('/data-pasien/cari', [App\Http\Controllers\DataPasienController::class, 'cari'])->name('cari');
+Route::get('/data-pasien/{id}', [App\Http\Controllers\DataPasienController::class, 'getPatientDetail'])->name('pasien.detail');

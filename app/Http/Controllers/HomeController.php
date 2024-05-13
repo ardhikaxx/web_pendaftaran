@@ -44,13 +44,20 @@ class HomeController extends Controller
         return view('home', compact('pasiens'));
     }
 
-    public function processDropdown(Request $request)
+    public function getPatientDetail($id)
+    {
+        $pasiens = DB::table('pasien')->where('id', $id)->first();
+
+        if ($pasiens) {
+            return response()->json($pasiens);
+        }
+        return response()->json([], 404);
+    }
+
+    public function getDataPasien()
     {
         $pasiens = Pasien::all();
 
-    // Lakukan proses lain sesuai kebutuhan, contohnya bisa memformat data atau melakukan validasi
-
-    // Redirect kembali dengan menyertakan data pasien
-    return redirect()->back()->with('pasiens', $pasiens)->with('success', 'Proses dropdown berhasil dilakukan.');
+        return response()->json($pasiens);
     }
 }
